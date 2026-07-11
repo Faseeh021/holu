@@ -133,8 +133,32 @@ h1, h2, h3, h4, h5, .section-title, .hero-title {
   color: #fff;
 }
 .holu-navbar .holu-hamburger:hover { color: var(--holu-orange); }
+/* toggle hamburger <-> X icon based on open state */
+.holu-hamburger .icon-close { display: none; }
+.holu-hamburger[aria-expanded="true"] .icon-open { display: none; }
+.holu-hamburger[aria-expanded="true"] .icon-close { display: inline-block; }
 @media (min-width: 992px) {
   .holu-navbar .navbar-collapse { flex-grow: 1; }
+}
+/* mobile menu: frosted-glass panel overlaid on the hero (does not push content) */
+@media (max-width: 991.98px) {
+  .holu-navbar .navbar-collapse {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(12,13,15,.55);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 24px 48px rgba(0,0,0,.45);
+    padding: .75rem 1.25rem 1.35rem;
+  }
+  .holu-navbar .navbar-nav { gap: .1rem; }
+  .holu-navbar .nav-link {
+    padding: .6rem .25rem;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    font-size: 1rem;
+  }
+  .holu-navbar .phone-btn { display: inline-flex; margin-top: .9rem; }
 }
 .phone-btn { font-weight: 700; white-space: nowrap; }
 
@@ -773,6 +797,12 @@ h1, h2, h3, h4, h5, .section-title, .hero-title {
   .hero-title { font-size: 1.7rem; }
   .hero-eyebrow { font-size: .66rem; letter-spacing: .12em; }
   .hero-lead { font-size: .9rem; }
+  /* hero buttons: shorter (fit content) + smaller text */
+  .hero-actions { align-items: flex-start; }
+  .hero-actions .btn { width: auto; font-size: .72rem; padding: .55rem 1.05rem; }
+  /* section headings smaller on phones (pricing & steps) */
+  .section-title { font-size: 1.3rem; }
+  .section-sub { font-size: .85rem; }
   /* 3 trust chips forced onto a single line */
   .hero-trust { flex-wrap: nowrap; gap: .5rem; margin-bottom: 1.4rem; }
   .hero-trust .trust-chip { font-size: .64rem; gap: .3rem; line-height: 1.15; }
@@ -784,14 +814,15 @@ h1, h2, h3, h4, h5, .section-title, .hero-title {
   .step-circle { width: 32px; height: 32px; font-size: .9rem; }
   .step-label { font-size: .64rem; line-height: 1.15; }
 
-  /* feature strip + trust band: single column, centered, no overflow */
+  /* feature strip + trust band: 2 x 2 grid, centered items */
   .feature-strip > .container > .row > [class*="col-"],
-  .trust-band > .container > .row > [class*="col-"] { flex: 0 0 100%; max-width: 100%; }
-  .feature-item, .trust-item { flex-direction: column; text-align: center; align-items: center; gap: .5rem; }
-  .feature-item > div, .trust-item > div { width: 100%; min-width: 0; }
-  .feature-title, .trust-title { text-align: center; }
-  .feature-desc, .trust-desc { text-align: center; font-size: .8rem; }
-  .trust-dollar { margin: 0 auto; }
+  .trust-band > .container > .row > [class*="col-"] { flex: 0 0 50%; max-width: 50%; }
+  /* stretch children to full cell width (reliable) + center the icon */
+  .feature-item, .trust-item { flex-direction: column; align-items: stretch; text-align: center; gap: .45rem; }
+  .feature-ico, .trust-item > i, .trust-dollar { align-self: center; }
+  .feature-item > div, .trust-item > div { text-align: center; min-width: 0; }
+  .feature-title, .trust-title { text-align: center; font-size: .74rem; }
+  .feature-desc, .trust-desc { text-align: center; font-size: .72rem; }
 
   /* extra-note: block stack so the text wraps within the box */
   .extra-note { display: block !important; text-align: center !important; }
