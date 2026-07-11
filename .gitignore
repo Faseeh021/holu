@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# temp render / headless-chrome profiles used during development
+.c*/
+.chrometmp*/
+*_thumb.png
+render.png

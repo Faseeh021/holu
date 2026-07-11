@@ -1,0 +1,808 @@
+/* ===================================================================
+   HOLU Umzugservice – custom styles
+   =================================================================== */
+:root {
+  --holu-orange: #EB5602;
+  --holu-orange-dark: #C74A02;
+  --holu-black: #0A0A0A;
+  --holu-dark-2: #121212;
+  --holu-gray-bg: #F1F1F1;
+  --holu-cream: #FBF9F5;
+  --holu-white: #FFFFFF;
+  --holu-text: #1A1A1A;
+  --holu-muted: #6B7280;
+  --holu-border: #E5E7EB;
+  --holu-green: #2E9E5B;
+}
+
+* { -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--holu-text);
+  background: var(--holu-white);
+  overflow-x: hidden;
+}
+
+/* Less side space (left & right) in the navbar and every section: the
+   container spans nearly full width with only a small padding, so content
+   sits close to the edges instead of being centered with big gutters. */
+@media (min-width: 992px) {
+  .container {
+    max-width: 2000px;
+    padding-left: clamp(1.5rem, 2.5vw, 2.75rem);
+    padding-right: clamp(1.5rem, 2.5vw, 2.75rem);
+  }
+}
+
+h1, h2, h3, h4, h5, .section-title, .hero-title {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.text-orange { color: var(--holu-orange) !important; }
+
+/* -------------------- Buttons -------------------- */
+.btn-holu-orange {
+  background: var(--holu-orange);
+  border: 2px solid var(--holu-orange);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  border-radius: 10px;
+  padding: .7rem 1.4rem;
+  transition: all .18s ease;
+}
+.btn-holu-orange:hover,
+.btn-holu-orange:focus {
+  background: var(--holu-orange-dark);
+  border-color: var(--holu-orange-dark);
+  color: #fff;
+}
+
+.btn-holu-outline {
+  background: rgba(20,20,20,.55);
+  border: 2px solid rgba(255,255,255,.5);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  border-radius: 10px;
+  padding: .7rem 1.4rem;
+  transition: all .18s ease;
+}
+.btn-holu-outline:hover { background: rgba(0,0,0,.75); color: #fff; }
+
+.btn-holu-dark-outline {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.35);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  border-radius: 10px;
+  padding: .7rem 1.4rem;
+  transition: all .18s ease;
+}
+.btn-holu-dark-outline:hover { background: rgba(255,255,255,.08); color: #fff; }
+.step-card-confirm .btn-holu-dark-outline {
+  border-color: var(--holu-border);
+  color: var(--holu-text);
+  font-size: .76rem;
+  letter-spacing: 0;
+  padding-left: .5rem; padding-right: .5rem;
+  white-space: nowrap;
+}
+.step-card-confirm .btn-holu-dark-outline:hover { background: #f3f3f3; color: var(--holu-text); }
+
+/* ==================================================================
+   NAVBAR
+   ================================================================== */
+.holu-navbar {
+  background: var(--holu-black);
+  padding: .55rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.holu-logo-img {
+  height: 68px;
+  width: auto;
+  display: block;
+}
+.holu-navbar .nav-link {
+  color: #e8e8e8;
+  font-weight: 500;
+  font-size: .95rem;
+  padding: .4rem .9rem;
+}
+.holu-navbar .nav-link:hover { color: var(--holu-orange); }
+.holu-navbar .navbar-toggler {
+  border: none; color: #fff; font-size: 1.6rem; padding: 0 .3rem;
+}
+.holu-navbar .navbar-toggler:focus { box-shadow: none; }
+/* hamburger always visible at the far right end of the navbar */
+.holu-navbar .holu-hamburger {
+  display: inline-flex !important;
+  align-items: center; justify-content: center;
+  order: 3;
+  margin-left: 1rem;
+  color: #fff;
+}
+.holu-navbar .holu-hamburger:hover { color: var(--holu-orange); }
+@media (min-width: 992px) {
+  .holu-navbar .navbar-collapse { flex-grow: 1; }
+}
+.phone-btn { font-weight: 700; white-space: nowrap; }
+
+/* ==================================================================
+   HERO
+   ================================================================== */
+.hero {
+  position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+/* Real <img> = the COMPLETE image, always. width:100% + height:auto can
+   never crop, zoom, or distort — it just scales the whole picture to fit.
+   If the image is shorter than the hero, the dark background fills the rest. */
+.hero-bg-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  z-index: 1;
+  /* dark shade only behind the text (up to ~end of "UMZIEHEN"), then fully
+     transparent so the rest of the image shows with no dark overlay */
+  background: linear-gradient(90deg, rgba(6,8,10,.92) 0%, rgba(6,8,10,.88) 18%, rgba(6,8,10,.6) 30%, rgba(6,8,10,0) 40%, rgba(6,8,10,0) 100%);
+}
+/* Content overlaid on top of the full image, vertically centered. */
+.hero-content {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.hero-content > .row { width: 100%; }
+.hero .container { z-index: 2; }
+.hero-copy { color: #fff; }
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .2em;
+  color: var(--holu-orange);
+  margin-bottom: 1rem;
+}
+.hero-title {
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+}
+/* keep each headline line whole on desktop so words stay in place */
+@media (min-width: 992px) {
+  .hero-title { white-space: nowrap; }
+}
+.hero-lead {
+  font-size: 1.05rem;
+  color: #d7dade;
+  max-width: 30rem;
+  margin-bottom: 1.8rem;
+}
+/* Trust chips: circular orange-outline icon + two-line text */
+.hero-trust {
+  display: flex; flex-wrap: wrap; gap: 1.4rem 2.2rem;
+  margin-bottom: 2rem;
+}
+.hero-trust .trust-chip {
+  display: flex; align-items: center; gap: .6rem;
+  color: #eef0f2; font-weight: 600; font-size: .92rem; line-height: 1.2;
+}
+/* plain orange icons – no circle around them */
+.hero-trust .trust-chip .chip-ico {
+  flex: 0 0 auto;
+  display: flex; align-items: center;
+  color: var(--holu-orange);
+  font-size: 1.7rem;
+}
+
+/* Hero action buttons – kept on one line, sized to match the design */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1rem;
+}
+.hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .6rem 1.2rem;
+  font-size: .82rem;
+  white-space: nowrap;
+}
+/* plain whatsapp glyph (no circle) inside the "Kostenlose Anfrage" button */
+.anfrage-ico {
+  display: inline-flex; align-items: center;
+  margin-right: .5rem; font-size: 1.05rem;
+}
+
+/* Booking card */
+.booking-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.15rem 1.3rem 1.15rem;
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+  max-width: 292px;
+}
+/* thinner and nudged toward the right corner (hero only) */
+@media (min-width: 992px) {
+  .hero .booking-card { margin-right: -2.25rem; }
+}
+.booking-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: .01em;
+}
+.booking-sub { color: var(--holu-muted); font-size: .8rem; margin: .25rem 0 .7rem; }
+/* slimmer booking card fields */
+.booking-card .input-icon { margin-bottom: .5rem !important; }
+.booking-card .input-icon .form-control,
+.booking-card .input-icon .form-select { height: 41px; font-size: .87rem; }
+.booking-card .btn-lg { padding: .65rem 1rem; font-size: .93rem; }
+.step-badge {
+  flex: 0 0 auto;
+  background: #fff;
+  color: var(--holu-orange);
+  border: 2px solid var(--holu-orange);
+  font-weight: 700;
+  font-size: .72rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap;
+}
+.booking-checks {
+  display: flex; flex-wrap: nowrap; gap: .3rem;
+  margin-top: .75rem; justify-content: space-between;
+}
+.booking-checks span {
+  font-size: .56rem; color: var(--holu-muted); font-weight: 500;
+  white-space: nowrap; display: inline-flex; align-items: center; gap: .12rem;
+}
+.booking-checks i { color: var(--holu-orange); font-size: .6rem; }
+
+/* Inputs with leading icon */
+.input-icon { position: relative; }
+.input-icon > i {
+  position: absolute; left: .9rem; top: 50%; transform: translateY(-50%);
+  color: var(--holu-orange); font-size: 1rem; pointer-events: none; z-index: 2;
+}
+.input-icon .form-control,
+.input-icon .form-select {
+  padding-left: 2.4rem;
+  height: 48px;
+  border: 1px solid var(--holu-border);
+  border-radius: 10px;
+  font-size: .92rem;
+  background-color: #fafafa;
+}
+.input-icon .form-select { padding-left: 1rem; }
+.input-icon .form-control:focus,
+.input-icon .form-select:focus {
+  border-color: var(--holu-orange);
+  box-shadow: 0 0 0 .18rem rgba(235,86,2,.15);
+}
+.form-control[readonly] { background-color: #f6f6f6; }
+
+/* ==================================================================
+   FEATURE STRIP
+   ================================================================== */
+.feature-strip {
+  background: #fff;
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--holu-border);
+}
+/* comfortable margin from the page edges (matches reference) */
+@media (min-width: 992px) {
+  .feature-strip .container {
+    padding-left: clamp(2rem, 5vw, 5.5rem);
+    padding-right: clamp(2rem, 5vw, 5.5rem);
+  }
+}
+.feature-item { display: flex; align-items: center; gap: 1rem; position: relative; }
+/* light grey vertical separator centered between items (desktop row) */
+@media (min-width: 992px) {
+  /* center each item's content in its column so the column boundary is the
+     exact midpoint between two adjacent items */
+  .feature-strip .feature-item { justify-content: center; }
+  .feature-strip .row > [class*="col-"]:not(:first-child) .feature-item::before {
+    content: "";
+    position: absolute;
+    left: -0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 56px;
+    background: var(--holu-border);
+  }
+}
+/* standalone orange icons – no circle around them (matches reference) */
+.feature-ico {
+  flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--holu-orange); font-size: 2.1rem; line-height: 1;
+}
+.feature-ico .feat-svg { width: 2.2rem; height: 2.2rem; display: block; }
+.feature-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: .82rem; letter-spacing: .02em;
+  margin: 0 0 .15rem;
+}
+.feature-desc { font-size: .82rem; color: var(--holu-muted); margin: 0; line-height: 1.35; }
+
+/* ==================================================================
+   PRICING
+   ================================================================== */
+.pricing-section { background: #fff; padding: 4rem 0 1.5rem; }
+/* lighter weight for the pricing heading */
+.pricing-section .section-title { font-weight: 700; }
+/* comfortable margin from page edges + cap card row width */
+@media (min-width: 992px) {
+  .pricing-section .container {
+    padding-left: clamp(2rem, 5vw, 5.5rem);
+    padding-right: clamp(2rem, 5vw, 5.5rem);
+  }
+  .pkg-row { max-width: 1150px; margin-left: auto; margin-right: auto; }
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.section-sub { color: var(--holu-muted); font-size: 1rem; margin-top: .4rem; }
+
+.pkg-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--holu-border);
+  display: flex; flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+  position: relative;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.pkg-card .pkg-head { border-radius: 15px 15px 0 0; }
+.pkg-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.10); }
+
+.pkg-head {
+  background: var(--holu-dark-2);
+  color: #fff;
+  padding: 1.15rem 1.4rem;
+  text-align: center;
+}
+.pkg-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; font-size: 1rem; letter-spacing: .02em;
+}
+
+.pkg-body { padding: 1.5rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+/* price on the left, person icons on the right */
+.pkg-pricerow {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.3rem;
+}
+.pkg-price { display: flex; align-items: baseline; }
+.pkg-price .amount {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 2.6rem; color: var(--holu-text); line-height: 1;
+}
+.pkg-price .cur {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 1.1rem; color: var(--holu-text); margin-left: 1px;
+  align-self: flex-start; margin-top: .2rem;
+}
+.pkg-price .per { color: var(--holu-muted); font-weight: 500; margin-left: .35rem; font-size: .92rem; }
+/* grouped "people" icons (count = helpers) */
+.pkg-people { display: flex; align-items: center; color: var(--holu-orange); }
+.people-svg { height: 1.7rem; width: auto; display: block; }
+
+.pkg-list { list-style: none; padding: 0; margin: 0 0 1.4rem; }
+.pkg-list li {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .5rem 0; font-size: .92rem; color: #333;
+  border-bottom: 1px solid #f1f1f1;
+}
+.pkg-list li:last-child { border-bottom: none; }
+.pkg-list i { color: var(--holu-orange); font-weight: 700; }
+.pkg-body .btn { margin-top: auto; }
+
+/* outline "AUSWÄHLEN" button for the side cards */
+.btn-holu-outline-orange {
+  background: #fff;
+  border: 1.5px solid var(--holu-orange);
+  color: var(--holu-orange);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  border-radius: 10px;
+  padding: .7rem 1.4rem;
+  transition: all .18s ease;
+}
+.btn-holu-outline-orange:hover {
+  background: var(--holu-orange);
+  color: #fff;
+}
+
+/* Featured card */
+.pkg-featured {
+  border: 2px solid var(--holu-orange);
+  box-shadow: 0 18px 44px rgba(235,86,2,.18);
+}
+.pkg-featured .pkg-head { background: #000; }
+.pkg-badge {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--holu-orange); color: #fff;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: .7rem; letter-spacing: .06em; white-space: nowrap;
+  padding: .35rem 1.1rem; border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(235,86,2,.35);
+  z-index: 3;
+}
+@media (min-width: 992px) {
+  /* featured card is SMALLER than the sides: natural height, centered so it
+     is inset at the top (room for the badge) and at the bottom */
+  .pkg-featured { align-self: center; z-index: 2; }
+  .pkg-featured .pkg-body { padding-top: 1.1rem; padding-bottom: 1.1rem; }
+  .pkg-featured .pkg-list { margin-bottom: 1rem; }
+  .pkg-featured:hover { transform: translateY(-4px); }
+}
+
+/* Extra note – light peach band spanning the full width of the card row */
+.extra-note {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  background: #FDF3EA;
+  border: none;
+  border-radius: 14px; padding: 1.35rem 1.5rem;
+  margin: 2.5rem auto 0; max-width: 1126px;
+}
+.extra-ico {
+  flex: 0 0 auto;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--holu-orange);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--holu-orange); font-size: 1.2rem;
+}
+.extra-text strong {
+  font-family: 'Montserrat', sans-serif; display: block; font-size: .95rem;
+  text-transform: uppercase; letter-spacing: .01em; color: var(--holu-text);
+}
+.extra-text span { font-size: .9rem; color: var(--holu-muted); }
+
+/* ==================================================================
+   SO EINFACH BUCHEN
+   ================================================================== */
+.steps-section { background: #fff; padding: 2rem 0 3.5rem; }
+/* lighter heading weight */
+.steps-section .section-title { font-weight: 700; }
+/* narrower card row (indicator + cards inset together, stay aligned) */
+@media (min-width: 992px) {
+  .steps-section .container {
+    padding-left: clamp(2rem, 5vw, 5.5rem);
+    padding-right: clamp(2rem, 5vw, 5.5rem);
+  }
+}
+
+/* full-width step indicator: nodes aligned over the 4 cards, longer line */
+.step-indicator {
+  position: relative;
+  display: flex;
+  max-width: none; margin: 0 -1.5rem 0.4rem;
+  padding: 0;
+}
+.step-line {
+  position: absolute; top: 20px; left: 12.5%; right: 12.5%;
+  height: 2px; background: var(--holu-border); z-index: 0;
+}
+.step-node {
+  position: relative; z-index: 1; flex: 1 1 0;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+}
+.step-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #e6e6e6; color: #9aa0a6;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.05rem;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--holu-border);
+}
+.step-circle.active {
+  background: var(--holu-orange); color: #fff;
+  box-shadow: 0 0 0 1px var(--holu-orange), 0 6px 14px rgba(235,86,2,.35);
+}
+.step-label { font-size: .82rem; color: var(--holu-muted); font-weight: 600; }
+
+.step-card {
+  background: #fff; border: none;
+  border-radius: 14px; padding: 1rem .95rem;
+  display: flex; flex-direction: column;
+  box-shadow: 0 6px 22px rgba(0,0,0,.07);
+}
+/* active step card (step 1) has an orange border */
+.step-card.step-card-active {
+  border: 2px solid var(--holu-orange);
+  box-shadow: 0 8px 26px rgba(235,86,2,.14);
+}
+/* field with an icon on the right (chevron / calendar) */
+.field-icon-right { position: relative; }
+.field-icon-right .form-control { padding-right: 2.2rem; }
+.field-icon-right > i {
+  position: absolute; right: .8rem; top: 50%; transform: translateY(-50%);
+  color: #1a1a1a; font-size: .9rem;
+}
+/* working dropdown: hide native arrow, keep custom black chevron */
+.step-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  cursor: pointer;
+}
+.field-icon-right .bi-chevron-down { pointer-events: none; }
+/* working date field: German-format display + hidden real date picker */
+.date-hidden {
+  position: absolute; right: .5rem; bottom: 0;
+  width: 1px; height: 1px; opacity: 0; border: 0; padding: 0;
+  pointer-events: none;
+}
+.field-icon-right .bi-calendar-event { cursor: pointer; }
+.field-icon-right #datumDisplay { cursor: pointer; }
+/* arrow between the step cards */
+.step-col { position: relative; }
+.step-arrow { display: none; }
+@media (min-width: 992px) {
+  .step-arrow {
+    display: block;
+    position: absolute; top: 50%; right: 0; transform: translate(50%, -50%);
+    color: #4a4a4a; font-size: 1.4rem; z-index: 4;
+  }
+}
+.step-card-head {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: .82rem; letter-spacing: .01em; text-transform: uppercase;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
+}
+.step-card-head .num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--holu-orange); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .78rem; flex: 0 0 auto;
+}
+/* grey circle for inactive/future step cards */
+.step-card-head .num.inactive { background: #c2c5cb; }
+.step-card .btn { margin-top: auto; }
+.mini-label { font-size: .74rem; color: var(--holu-muted); font-weight: 600; margin-bottom: .2rem; display: block; }
+.step-card .form-control { height: 39px; border-radius: 9px; font-size: .85rem; background:#fafafa; border:1px solid var(--holu-border); }
+.step-card .mb-2 { margin-bottom: .45rem !important; }
+.step-card .mb-3 { margin-bottom: .7rem !important; }
+.step-card .input-icon .form-control { height: 42px; }
+
+/* Step 2 – estimated duration (plain centered text, no box, black number) */
+.price-est { text-align: center; margin-bottom: .55rem; }
+.pe-label { display: block; font-size: .72rem; color: var(--holu-muted); font-weight: 500; }
+.pe-hours { line-height: 1.05; margin-top: .05rem; }
+.pe-num {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 1.9rem; color: var(--holu-text);
+}
+.pe-unit { font-size: .95rem; color: var(--holu-text); font-weight: 500; margin-left: .15rem; }
+/* Paket label + value */
+.pe-paket { margin-bottom: .3rem; }
+.pe-paket-val { font-size: .88rem; color: var(--holu-text); font-weight: 600; margin-top: .1rem; }
+/* price rows */
+.pr-row {
+  display: flex; justify-content: space-between; gap: .5rem;
+  font-size: .82rem; padding: .32rem 0;
+}
+.pr-row span:first-child { color: var(--holu-muted); }
+.pr-row span:last-child { font-weight: 600; text-align: right; color: var(--holu-text); }
+.pr-row.total span:last-child { font-weight: 800; font-size: .92rem; }
+.price-block {
+  border-top: 1px solid #ededed; border-bottom: 1px solid #ededed;
+  margin: .2rem 0 .1rem; padding: .15rem 0;
+}
+.pr-row.extra { padding-top: .5rem; margin-bottom: .6rem; }
+
+/* Radio group (step 3) – Privatperson / Firma */
+.radio-group { display: flex; gap: 1.6rem; margin-bottom: .8rem; }
+.radio-opt {
+  display: flex; align-items: center; gap: .45rem;
+  font-size: .85rem; color: var(--holu-text); font-weight: 500; cursor: pointer;
+}
+.radio-opt input[type="radio"] {
+  accent-color: var(--holu-orange);
+  width: 16px; height: 16px; margin: 0; cursor: pointer;
+}
+
+/* Toggle group (legacy, unused) */
+.toggle-group { display: flex; background: #f1f1f1; border-radius: 10px; padding: 4px; gap: 4px; }
+.toggle-btn {
+  flex: 1; border: none; background: transparent; border-radius: 8px;
+  padding: .45rem; font-size: .85rem; font-weight: 600; color: var(--holu-muted); cursor: pointer;
+}
+.toggle-btn.active { background: #fff; color: var(--holu-orange); box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+
+/* Confirm (step 4) – green success theme */
+.step-card-confirm {
+  justify-content: flex-start;
+  border: 2px solid #8fc9a8;
+}
+.step-card-head .num.num-green { background: var(--holu-green); }
+.confirm-body { display: flex; flex-direction: column; align-items: center; flex: 1; }
+/* button pinned to the bottom like the other cards (no empty space below it) */
+.step-card-confirm .confirm-body .btn { margin-top: auto; width: 100%; }
+/* green outline check circle with a soft outer ring */
+.confirm-check {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #fff; color: var(--holu-green);
+  border: 2px solid var(--holu-green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.9rem; margin: .5rem 0 .9rem;
+  box-shadow: 0 0 0 6px rgba(46,158,91,.12);
+}
+.confirm-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; }
+.confirm-text { font-size: .82rem; color: var(--holu-muted); margin-bottom: .9rem; line-height: 1.35; }
+.confirm-num { text-align: center; margin-bottom: .3rem; }
+.confirm-num span { display: block; font-size: .74rem; color: var(--holu-muted); }
+.confirm-num strong { font-family: 'Montserrat', sans-serif; letter-spacing: .03em; font-size: .95rem; }
+
+/* ==================================================================
+   TRUST BAND
+   ================================================================== */
+.trust-band { background: var(--holu-cream); padding: 2.4rem 0; }
+.trust-item { display: flex; align-items: center; gap: .9rem; position: relative; }
+.trust-item > i {
+  flex: 0 0 auto; font-size: 1.7rem; color: var(--holu-text);
+  width: 36px; text-align: center;
+}
+/* dollar sign inside a dark outline circle (item 2) */
+.trust-dollar {
+  flex: 0 0 auto;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--holu-text);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--holu-text); font-size: 1rem;
+}
+/* light grey separator centered between items (desktop) */
+@media (min-width: 992px) {
+  .trust-band .trust-item { justify-content: center; }
+  .trust-band .row > [class*="col-"]:not(:first-child) .trust-item::before {
+    content: ""; position: absolute;
+    left: -0.75rem; top: 50%; transform: translateY(-50%);
+    width: 1px; height: 48px; background: rgba(0,0,0,.13);
+  }
+}
+.trust-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: .8rem; letter-spacing: .02em; margin: 0 0 .2rem;
+}
+.trust-desc { font-size: .82rem; color: var(--holu-muted); margin: 0; line-height: 1.35; }
+
+/* ==================================================================
+   FOOTER CTA
+   ================================================================== */
+.footer-cta { background: var(--holu-black); padding: 1.5rem 0; color: #fff; }
+.footer-phone-ico {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--holu-orange); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 1.05rem;
+  flex: 0 0 auto;
+}
+.footer-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 1.1rem; color: var(--holu-orange); margin: 0 0 .2rem;
+  text-transform: uppercase; letter-spacing: .01em;
+}
+.footer-sub { color: #b9bcc0; font-size: .88rem; font-weight: 400; margin: 0; }
+/* smaller, lighter footer buttons */
+.footer-cta .btn {
+  font-size: .8rem;
+  font-weight: 500;
+  padding: .5rem 1.15rem;
+  letter-spacing: .01em;
+}
+.footer-cta .btn i { font-size: .95rem; }
+
+
+/* ==================================================================
+   RESPONSIVE
+   ================================================================== */
+/* line-break helper: desktop breaks (br-lg) vs mobile breaks (br-sm) */
+.br-sm { display: none; }
+
+/* ---- tablet & below (< lg) ---- */
+@media (max-width: 991.98px) {
+  .holu-navbar .holu-hamburger { margin-left: .5rem; }
+  .br-lg { display: none; }
+  .br-sm { display: inline; }
+
+  /* HERO: background image covers the copy area (through the buttons);
+     the booking form flows below on the dark background. */
+  .hero { min-height: 0; background: #0a0a0a; }
+  .hero-bg-img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 460px;
+    object-fit: cover; object-position: 58% 28%;
+  }
+  .hero-overlay {
+    display: block; top: 0; bottom: auto; height: 460px;
+    background: linear-gradient(180deg, rgba(6,8,10,.48) 0%, rgba(6,8,10,.66) 55%, rgba(6,8,10,.9) 86%, #0a0a0a 100%);
+  }
+  .hero-content { position: relative; z-index: 2; display: block; padding: 2rem 1.25rem 2.25rem; }
+  .hero-content .hero-copy { color: #fff; }
+  /* stack the row as blocks so nothing can overflow horizontally */
+  .hero-content > .row { display: block; margin: 0; }
+  .hero-content > .row > [class*="col-"] { width: 100%; max-width: 100%; padding: 0; }
+  .hero-lead { max-width: 100%; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: .8rem; }
+  .hero-actions .btn { width: 100%; white-space: nowrap; }
+  .booking-card { margin: 1.5rem auto 0; max-width: 100%; }
+  .booking-checks { flex-wrap: wrap; }
+
+  /* allow flex cols to shrink to the viewport (Bootstrap sets flex-shrink:0) */
+  .row > * { min-width: 0; }
+
+  /* steps: drop desktop negative margins / big gutter */
+  .step-line { display: none; }
+  .step-indicator { margin-left: 0; margin-right: 0; }
+  .step-row { --bs-gutter-x: 1.25rem; --bs-gutter-y: 1.5rem; }
+  .footer-title { font-size: 1rem; }
+}
+
+/* ---- phones (< sm) ---- */
+@media (max-width: 575.98px) {
+  .hero-title { font-size: 1.7rem; }
+  .hero-eyebrow { font-size: .66rem; letter-spacing: .12em; }
+  .hero-lead { font-size: .9rem; }
+  /* 3 trust chips forced onto a single line */
+  .hero-trust { flex-wrap: nowrap; gap: .5rem; margin-bottom: 1.4rem; }
+  .hero-trust .trust-chip { font-size: .64rem; gap: .3rem; line-height: 1.15; }
+  .hero-trust .trust-chip .chip-ico { width: 29px; height: 29px; font-size: 1rem; }
+
+  /* step indicator compact */
+  .step-indicator { padding: 0; }
+  .step-node { gap: .3rem; min-width: 0; }
+  .step-circle { width: 32px; height: 32px; font-size: .9rem; }
+  .step-label { font-size: .64rem; line-height: 1.15; }
+
+  /* feature strip + trust band: single column, centered, no overflow */
+  .feature-strip > .container > .row > [class*="col-"],
+  .trust-band > .container > .row > [class*="col-"] { flex: 0 0 100%; max-width: 100%; }
+  .feature-item, .trust-item { flex-direction: column; text-align: center; align-items: center; gap: .5rem; }
+  .feature-item > div, .trust-item > div { width: 100%; min-width: 0; }
+  .feature-title, .trust-title { text-align: center; }
+  .feature-desc, .trust-desc { text-align: center; font-size: .8rem; }
+  .trust-dollar { margin: 0 auto; }
+
+  /* extra-note: block stack so the text wraps within the box */
+  .extra-note { display: block !important; text-align: center !important; }
+  .extra-note > * { display: block !important; width: 100% !important; min-width: 0 !important; flex: none !important; }
+  .extra-note .extra-ico { width: 44px !important; margin: 0 auto .5rem !important; }
+  .extra-note .extra-text { width: 100% !important; max-width: 100% !important; }
+  .extra-note .extra-text strong,
+  .extra-note .extra-text span { display: block !important; width: 100% !important; text-align: center !important; white-space: normal !important; }
+
+  /* footer */
+  .footer-cta .row { text-align: center; }
+  .footer-cta .d-flex { justify-content: center !important; flex-wrap: wrap; }
+  .footer-title { font-size: .92rem; }
+}
