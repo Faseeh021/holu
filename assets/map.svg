@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 250" width="280" height="250">
+  <rect width="280" height="250" fill="#E9EDEF"/>
+
+  <!-- green / park areas -->
+  <polygon points="-5,118 72,108 96,176 40,216 -5,206" fill="#DCEAD4"/>
+  <polygon points="158,-5 285,-5 285,78 168,72" fill="#DCEAD4"/>
+  <polygon points="120,202 205,214 214,255 118,255" fill="#DCEAD4"/>
+  <rect x="0" y="0" width="66" height="52" fill="#E2E8EB"/>
+
+  <!-- major roads -->
+  <g stroke="#FFFFFF" stroke-linecap="round">
+    <line x1="-20" y1="55"  x2="300" y2="95"  stroke-width="8"/>
+    <line x1="-20" y1="150" x2="300" y2="190" stroke-width="8"/>
+    <line x1="80"  y1="-20" x2="40"  y2="270" stroke-width="8"/>
+    <line x1="200" y1="-20" x2="165" y2="270" stroke-width="7"/>
+  </g>
+
+  <!-- minor roads -->
+  <g stroke="#F3F5F6" stroke-linecap="round">
+    <line x1="-20" y1="102" x2="300" y2="142" stroke-width="4"/>
+    <line x1="-20" y1="206" x2="300" y2="240" stroke-width="4"/>
+    <line x1="140" y1="-20" x2="110" y2="270" stroke-width="4"/>
+    <line x1="252" y1="-20" x2="226" y2="270" stroke-width="4"/>
+  </g>
+
+  <!-- route -->
+  <path d="M70,200 C112,182 150,150 205,72" fill="none"
+        stroke="#EB5602" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.5 8"/>
+
+  <!-- destination pin (green, top-right) -->
+  <g transform="translate(188.2,41.2) scale(1.4)">
+    <path d="M12,2 C8.13,2 5,5.13 5,9 c0,5.25 7,13 7,13 s7,-7.75 7,-13 c0,-3.87 -3.13,-7 -7,-7 Z" fill="#2E9E5B"/>
+    <circle cx="12" cy="9" r="2.6" fill="#fff"/>
+  </g>
+
+  <!-- start pin (orange, bottom-left) -->
+  <g transform="translate(53.2,169.2) scale(1.4)">
+    <path d="M12,2 C8.13,2 5,5.13 5,9 c0,5.25 7,13 7,13 s7,-7.75 7,-13 c0,-3.87 -3.13,-7 -7,-7 Z" fill="#EB5602"/>
+    <circle cx="12" cy="9" r="2.6" fill="#fff"/>
+  </g>
+</svg>
